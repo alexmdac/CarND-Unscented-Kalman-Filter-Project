@@ -1,11 +1,13 @@
 #include <uWS/uWS.h>
 #include <iostream>
+#include <vector>
 #include "json.hpp"
 #include <math.h>
 #include "ukf.h"
 #include "tools.h"
 
 using namespace std;
+using Eigen::VectorXd;
 
 // for convenience
 using json = nlohmann::json;

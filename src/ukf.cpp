@@ -1,11 +1,8 @@
 #include "ukf.h"
 #include "Eigen/Dense"
-#include <iostream>
 
-using namespace std;
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
-using std::vector;
 
 /**
  * Initializes Unscented Kalman filter
@@ -53,13 +50,11 @@ UKF::UKF() {
   */
 }
 
-UKF::~UKF() {}
-
 /**
  * @param {MeasurementPackage} meas_package The latest measurement data of
  * either radar or laser.
  */
-void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
+void UKF::ProcessMeasurement(const MeasurementPackage &meas_package) {
   /**
   TODO:
 
@@ -86,7 +81,7 @@ void UKF::Prediction(double delta_t) {
  * Updates the state and the state covariance matrix using a laser measurement.
  * @param {MeasurementPackage} meas_package
  */
-void UKF::UpdateLidar(MeasurementPackage meas_package) {
+void UKF::UpdateLidar(const MeasurementPackage &meas_package) {
   /**
   TODO:
 
@@ -101,7 +96,7 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
  * Updates the state and the state covariance matrix using a radar measurement.
  * @param {MeasurementPackage} meas_package
  */
-void UKF::UpdateRadar(MeasurementPackage meas_package) {
+void UKF::UpdateRadar(const MeasurementPackage &meas_package) {
   /**
   TODO:
 

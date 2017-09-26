@@ -3,15 +3,9 @@
 
 #include "measurement_package.h"
 #include "Eigen/Dense"
-#include <vector>
-#include <string>
-#include <fstream>
-
-using Eigen::MatrixXd;
-using Eigen::VectorXd;
 
 class UKF {
-public:
+ public:
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -23,13 +17,13 @@ public:
   bool use_radar_;
 
   ///* state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
-  VectorXd x_;
+  Eigen::VectorXd x_;
 
   ///* state covariance matrix
-  MatrixXd P_;
+  Eigen::MatrixXd P_;
 
   ///* predicted sigma points matrix
-  MatrixXd Xsig_pred_;
+  Eigen::MatrixXd Xsig_pred_;
 
   ///* time when the state is true, in us
   long long time_us_;
@@ -56,7 +50,7 @@ public:
   double std_radrd_ ;
 
   ///* Weights of sigma points
-  VectorXd weights_;
+  Eigen::VectorXd weights_;
 
   ///* State dimension
   int n_x_;
@@ -67,22 +61,13 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
-
-  /**
-   * Constructor
-   */
   UKF();
-
-  /**
-   * Destructor
-   */
-  virtual ~UKF();
 
   /**
    * ProcessMeasurement
    * @param meas_package The latest measurement data of either radar or laser
    */
-  void ProcessMeasurement(MeasurementPackage meas_package);
+  void ProcessMeasurement(const MeasurementPackage &meas_package);
 
   /**
    * Prediction Predicts sigma points, the state, and the state covariance
@@ -95,13 +80,13 @@ public:
    * Updates the state and the state covariance matrix using a laser measurement
    * @param meas_package The measurement at k+1
    */
-  void UpdateLidar(MeasurementPackage meas_package);
+  void UpdateLidar(const MeasurementPackage &meas_package);
 
   /**
    * Updates the state and the state covariance matrix using a radar measurement
    * @param meas_package The measurement at k+1
    */
-  void UpdateRadar(MeasurementPackage meas_package);
+  void UpdateRadar(const MeasurementPackage &meas_package);
 };
 
 #endif /* UKF_H */
