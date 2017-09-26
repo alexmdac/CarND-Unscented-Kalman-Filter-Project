@@ -3,27 +3,10 @@
 #include <vector>
 #include "Eigen/Dense"
 
-using Eigen::MatrixXd;
-using Eigen::VectorXd;
-using namespace std;
-
-class Tools {
-public:
-  /**
-  * Constructor.
-  */
-  Tools();
-
-  /**
-  * Destructor.
-  */
-  virtual ~Tools();
-
-  /**
-  * A helper method to calculate RMSE.
-  */
-  VectorXd CalculateRMSE(const vector<VectorXd> &estimations, const vector<VectorXd> &ground_truth);
-
-};
+// Returns the root mean squared error of the vectors in estimations, computed
+// by comparing them with the vectors in ground_truth.
+Eigen::VectorXd CalculateRMSE(
+    const std::vector<Eigen::VectorXd> &estimations,
+    const std::vector<Eigen::VectorXd> &ground_truth);
 
 #endif /* TOOLS_H_ */
